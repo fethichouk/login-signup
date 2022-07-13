@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
 
+
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, Route, Routes } from 'react-router-dom';
+import './App.css'
+import Login from './components/Auth/Login';
+import UserProfile from './components/UserProfile';
+import {current} from './redux/action'
 function App() {
+  
+  const token = localStorage.getItem('token')
+	const navigate = useNavigate()
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route index element={<Login />}/>
+        <Route path='/User' element={<UserProfile />} />
+      </Routes>
+     
     </div>
   );
 }
